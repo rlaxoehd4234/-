@@ -9,6 +9,8 @@ import program.randit.entity.dto.MemberRequestDto;
 import program.randit.entity.dto.MemberUpdateDto;
 import program.randit.repository.MemberRepository;
 
+import java.util.Optional;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -28,4 +30,12 @@ public class MemberService {
     }
 
 
+    public Long delete(Long id){
+       Member findMember = memberRepository.findById(id).orElseThrow( () -> new IllegalArgumentException("존재하지 않는 회원입니다."));
+
+       memberRepository.delete(findMember);
+
+       return id;
+
+    }
 }
