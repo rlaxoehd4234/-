@@ -36,6 +36,7 @@ public class MemberService {
        memberRepository.delete(findMember);
 
        return id;
-
     }
+
+
 }
