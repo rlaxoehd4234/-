@@ -2,10 +2,14 @@ package program.randit.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import program.randit.entity.Member;
 import program.randit.entity.dto.MemberRequestDto;
+import program.randit.entity.dto.MemberResponseDto;
+import program.randit.entity.dto.MemberSearchCondition;
 import program.randit.entity.dto.MemberUpdateDto;
 import program.randit.repository.MemberRepository;
 
@@ -14,7 +18,7 @@ import java.util.Optional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class MemberService {
+public class MemberService  {
     private final MemberRepository memberRepository;
 
     //member register
@@ -38,5 +42,9 @@ public class MemberService {
        return id;
     }
 
+    public Page<MemberResponseDto> searchMember(MemberSearchCondition condition, Pageable pageable){
+
+        return memberRepository.search(condition, pageable);
+    }
 
 }
