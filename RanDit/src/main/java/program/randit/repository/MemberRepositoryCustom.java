@@ -9,4 +9,5 @@ public interface MemberRepositoryCustom {
 
     Page<MemberResponseDto> search(MemberSearchCondition condition , Pageable pageable);
 
+
 }
